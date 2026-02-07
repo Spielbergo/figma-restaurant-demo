@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dine - Best Sushi In Town</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Dine Logo">
+            </div>
+            <nav class="nav">
+                <a href="#menu">Menu</a>
+                <a href="#fine-dining">Fine Dining</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="btn-reservation">RESERVATION</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="section-subtitle">Best Sushi In Town</p>
+            <h1 class="hero-title">TASTE THE RICH FLAVOR OF<br>HIGH QUALITY SUSHI</h1>
+            <p class="hero-description">We only use the five star quality for<br>our menu, come and get the richness in<br>every food we serve.</p>
+            <button class="btn-primary">GO TO MENU</button>
+        </div>
+    </section>
+
+    <!-- Today's Special Section -->
+    <section class="todays-special">
+        <div class="container">
+            <p class="section-subtitle">Special Menu</p>
+            <h2 class="section-title">Today's Special</h2>
+            <p class="section-description">Special menu often comes different everyday,<br>this is our special food for today</p>
+            
+            <div class="special-cards">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/tuna-sushi.webp" alt="Tuna Sushi">
+                    </div>
+                    <div class="card-content">
+                        <h3>TUNA SUSHI</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus.</p>
+                        <div class="rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <button class="btn-primary">Order now</button>
+                    </div>
+                </div>
+
+                <div class="card" style="background-color: var(--dark-bg);">
+                    <div class="card-image">
+                        <img src="images/salmon-sushi.webp" alt="Salmon Sushi">
+                    </div>
+                    <div class="card-content">
+                        <h3>SALMON SUSHI</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus.</p>
+                        <div class="rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <button class="btn-primary">Order now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="images/fish-sushi.webp" alt="Fish Sushi">
+                    </div>
+                    <div class="card-content">
+                        <h3>FISH SUSHI</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus.</p>
+                        <div class="rating">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+                        <button class="btn-primary">Order now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Interior Image -->
+    <section class="restaurant-image">
+        <img src="images/restaurant-interior.webp" alt="Restaurant Interior">
+    </section>
+
+    <!-- Our Specialties Section -->
+    <section class="specialties" id="menu">
+        <div class="container">
+            <p class="section-subtitle">Sushi Master</p>
+            <h2 class="section-title">Our Specialties</h2>
+            <p class="section-description">Authentic food from our restaurant served with high quality ingredients</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="sushi">Homestyle Sushi</button>
+                <button class="filter-btn" data-filter="steak">Steak</button>
+                <button class="filter-btn" data-filter="rice">With Rice</button>                
+                <button class="filter-btn" data-filter="cocktails">Cocktails</button>
+                <button class="filter-btn" data-filter="wine">Wine</button>
+                <button class="filter-btn" data-filter="appetizer">Appetizer</button>
+            </div>
+
+            <div class="specialty-items">
+                <div class="specialty-item">
+                    <div class="specialty-image">
+                        <img src="images/dragon-sushi.webp" alt="Dragon Sushi">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>DRAGON SUSHI</h3>
+                        <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus. Donec vitae vulputate nunc, in laoreet urna.</p>
+                        <p class="price">$50</p>
+                    </div>
+                </div>
+
+                <div class="specialty-item reverse">
+                    <div class="specialty-image">
+                        <img src="images/creamy-sushi.webp" alt="Creamy Sushi">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>CREAMY SUSHI</h3>
+                        <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus. Donec vitae vulputate nunc, in laoreet urna.</p>
+                        <p class="price">$50</p>
+                    </div>
+                </div>
+
+                <div class="specialty-item">
+                    <div class="specialty-image">
+                        <img src="images/roll-salmon-sushi.webp" alt="Roll Salmon Sushi">
+                    </div>
+                    <div class="specialty-content">
+                        <h3>ROLL SALMON SUSHI</h3>
+                        <p>Ingredients: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut imperdiet lectus. Donec vitae vulputate nunc, in laoreet urna.</p>
+                        <p class="price">$50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dining Events Section -->
+    <section class="dining-events">
+        <div class="container">
+            <p class="section-subtitle">Book Table</p>
+            <h2 class="section-title">Dining Events</h2>
+            <p class="section-description">Make your event more memorable and enjoyable<br>with your loved ones</p>
+            
+            <div class="event-buttons">
+                <button class="btn-primary">Book A Table</button>
+                <button class="btn-secondary">Explore menu</button>
+            </div>
+
+            <div class="event-packages">
+                <div class="event-package">
+                    <div class="event-image">
+                        <img src="images/fine-dining.webp" width="688" height="450" alt="Fine Dining">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-price">$500</p>
+                        <h3>Party Dinning</h3>
+                        <p>Perfect for Celebration of your best moment. Provide various kind of meal for 5 person.</p>
+                    </div>
+                </div>
+
+                <div class="event-package">
+                    <div class="event-image">
+                        <img src="images/gold-dining.webp" width="688" height="450" alt="Gold Dining">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-price">$1000</p>
+                        <h3>Good Dinning</h3>
+                        <p>Good quality meal with Good Wine. Completed Meal that will make you satisfied.</p>
+                    </div>
+                </div>
+
+                <div class="event-package">
+                    <div class="event-image">
+                        <img src="images/royalty-dining.webp" width="688" height="450" alt="Royalty Dining">
+                    </div>
+                    <div class="event-content">
+                        <p class="event-price">$1500</p>
+                        <h3>Quality Dinning</h3>
+                        <p>Premium Quality with the best wine and 5 star food. Package for special celebration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salmon Dish Image -->
+    <section class="food-image">
+        <img src="images/salmon-dish.webp" alt="Salmon Dish">
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="our-story" id="about">
+        <div class="container">
+            <p class="section-subtitle">Come and visit</p>
+            <h2 class="section-title">Our Story</h2>
+            <p class="section-description">Take a culinary journey through Japan, where our restaurant stands as a tribute<br>to the artistry and tradition of genuine Japanese cuisine.</p>
+            
+            <div class="story-content">
+                <div class="story-images">
+                    <img src="images/chef1.webp" alt="Chef preparing food">
+                    <img src="images/chef2.webp" alt="Chef serving">
+                </div>
+                <div class="story-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. Loren ipsum dolor sit amet consectetur adipiscing elit semper dalar cons.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit semper dalar elementum tempus hac tellus libero accumsan. Loren ipsum dolor sit amet consectetur adipiscing elit semper dalar cons.</p>
+                    <div class="business-hours">
+                        <p><strong>We are open from</strong></p>
+                        <p>Monday - Friday : 10 AM - 11 PM</p>
+                        <p>Saturday - Sunday : 9 AM - 1 PM</p>
+                    </div>
+                    <button class="btn-secondary">Know more</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA Section -->
+    <section class="footer-cta" id="contact">
+        <div class="container">
+            <h2>WE READY TO HAVE YOU<br>THE BEST DINING EXPERIENCES</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>📞 +123 456 789 000</p>
+                </div>
+                <div class="contact-item">
+                    <p>✉ Dinerestaurant@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <p>📍 Riverside Building, County Hall,<br>London SE1 7PB, United Kingdom</p>
+                </div>
+            </div>
+            <button class="btn-primary">Visit us</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="Dine Logo">
+            </div>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
