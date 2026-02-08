@@ -14,6 +14,7 @@
     --text-white: #ffffff;
     --text-gray: #b8b8b8;
     --text-light-gray: #8a8a8a;
+    --text-off-white: #d9d9d9;
 }
 
 body {
@@ -415,7 +416,7 @@ h1, h2, h3 {
 
 .specialty-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 57% 43%;
     align-items: center;
 }
 
@@ -429,7 +430,7 @@ h1, h2, h3 {
 
 .specialty-image {
     width: 100%;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
 }
 
@@ -450,7 +451,7 @@ h1, h2, h3 {
 
 .specialty-content h3 {
     font-size: 32px;
-    color: var(--gold);
+    color: var(--light-gold);
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
@@ -464,7 +465,8 @@ h1, h2, h3 {
 
 .specialty-content .price {
     font-size: 28px;
-    color: var(--gold);
+    color: var(--light-gold);
+    font-family: 'Cinzel', serif;
     font-weight: 600;
 }
 
@@ -482,20 +484,51 @@ h1, h2, h3 {
 }
 
 .event-packages {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 .event-package {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: center;
     position: relative;
-    overflow: hidden;
+}
+
+.event-package.reverse {
+    direction: rtl;
+}
+
+/* .event-package.reverse > * {
+    direction: ltr;
+} */
+
+.event-package.reverse .event-content {
+    left: 0;
+    right: auto;
+    text-align: left;
 }
 
 .event-image {
     width: 100%;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
+    position: relative;
+}
+
+.event-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent 45%, var(--dark-bg) 100%);
+    pointer-events: none;
+}
+
+.event-package.reverse .event-image::after {
+    background: linear-gradient(to left, transparent 45%, var(--dark-bg) 100%);
 }
 
 .event-image img {
@@ -506,41 +539,63 @@ h1, h2, h3 {
 }
 
 .event-package:hover .event-image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .event-content {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    bottom: 0;
-    left: 0;
     right: 0;
-    padding: 30px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 0 40px;
 }
 
-.event-price {
-    font-size: 36px;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 10px;
+.event-content.reverse {
+    left: 0;
+    text-align: left;
 }
 
 .event-content h3 {
-    font-size: 24px;
-    color: var(--text-white);
-    margin-bottom: 10px;
+    font-size: 28px;
+    color: var(--light-gold);
+    margin-bottom: 5px;
 }
 
 .event-content p {
-    font-size: 14px;
-    color: var(--text-gray);
-    line-height: 1.6;
+    font-size: 20px;
+    color: var(--text-off-white);
+    line-height: 1.2;
+}
+
+.event-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.event-details div {
+    direction: ltr !important;
+}
+
+.event-details p {
+    direction: ltr !important;
+    unicode-bidi: embed;
+}
+
+.event-price {
+    position: relative;
+    bottom: 22px;
+    font-size: 48px !important;
+    color: var(--light-gold) !important;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 /* Food Image */
 .food-image {
     width: 100%;
-    height: 500px;
+    height: 383px;
     overflow: hidden;
 }
 
@@ -558,7 +613,7 @@ h1, h2, h3 {
 
 .story-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.25fr .75fr;
     gap: 80px;
     align-items: center;
     margin-top: 60px;
@@ -566,20 +621,28 @@ h1, h2, h3 {
 
 .story-images {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+}
+
+.story-images img:first-child {
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .story-images img {
     width: 100%;
-    height: 300px;
+    height: 100%;
     object-fit: cover;
 }
 
 .story-text p {
-    font-size: 15px;
-    color: var(--text-light-gray);
-    line-height: 1.8;
+    font-size: 20px;
+    color: var(--text-off-white);
+    line-height: 1.3;
     margin-bottom: 25px;
 }
 
@@ -600,10 +663,12 @@ h1, h2, h3 {
     font-size: 16px;
 }
 
-/* Footer CTA Section */
+/* Footer */
 .footer-cta {
+    width: 100%;
+    height: 700px;
     padding: 100px 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/footer-bg.webp');
+    background: radial-gradient(ellipse closest-side, rgba(30, 30, 30, 0.7), var(--dark-bg) 110%), url(images/footer-bg.webp);
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -611,7 +676,7 @@ h1, h2, h3 {
 
 .footer-cta h2 {
     font-size: 42px;
-    color: var(--gold);
+    color: var(--light-gold);
     margin-bottom: 50px;
     letter-spacing: 1px;
     line-height: 1.4;
@@ -625,46 +690,64 @@ h1, h2, h3 {
     flex-wrap: wrap;
 }
 
+.contact-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
 .contact-item p {
-    font-size: 14px;
-    color: var(--text-gray);
+    font-size: 20px;
+    color: var(--text-off-white);
     text-align: center;
 }
 
-/* Footer */
-.footer {
-    background-color: var(--dark-bg);
-    padding: 40px 0;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .footer-logo img {
-    height: 50px;
-    width: 50px;
+    margin-top: 100px;
+    height: 80px;
+    width: 80px;
     object-fit: contain;
 }
 
 .footer-links {
     display: flex;
+    justify-content: center;
     gap: 40px;
+    margin-top: 25px;
 }
 
 .footer-links a {
-    color: var(--text-gray);
+    color: var(--text-off-white);
     text-decoration: none;
-    font-size: 13px;
+    font-family: 'cormorant SC', serif;
+    font-size: 20px;
     transition: color 0.3s ease;
     text-transform: capitalize;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 80%;
+    height: 2px;
+    margin: auto;
+    background-color: var(--gold);
 }
 
 .footer-links a:hover {
     color: var(--gold);
+}
+
+.footer-credit {
+    width: 100%;
+    height: 80px;
+    background-color: var(--dark-bg);
 }
 
 /* Responsive Design */
