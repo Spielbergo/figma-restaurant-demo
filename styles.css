@@ -155,6 +155,22 @@ h1, h2, h3 {
     background-color: var(--dark-bg);
 }
 
+.skip-to-main {
+  position: absolute;
+  left: -9999px; 
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-to-main:focus {
+  position: static; 
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
 /* Header */
 .header {
     position: fixed;
