@@ -24,123 +24,99 @@ window.addEventListener('scroll', () => {
 
 // Filter functionality for specialties section
 const filterButtons = document.querySelectorAll('.filter-btn');
-const specialtyItems = document.querySelectorAll('.specialty-item');
+    const nav = document.querySelector('.nav');
+    const headerContainer = document.querySelector('.header .container');
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        // Filter items (in a real app, you'd filter based on data attributes)
-        specialtyItems.forEach(item => {
-            if (filter === 'all') {
-                item.style.display = 'grid';
-            } else {
-                // Here you would add data-category attributes to items and filter
-                item.style.display = 'grid';
-            }
-            
-            // Add animation
-            item.style.animation = 'none';
-            setTimeout(() => {
-                item.style.animation = 'fadeIn 0.6s ease-out';
-            }, 10);
-        });
-    });
-});
-
-// Scroll reveal animation
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all cards and sections
-document.querySelectorAll('.card, .specialty-item, .event-package').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.6s ease-out';
-    observer.observe(el);
-});
-
-// Button hover effects
-document.querySelectorAll('button').forEach(button => {
-    button.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
-
-// Order button functionality
-document.querySelectorAll('.btn-order').forEach(button => {
-    button.addEventListener('click', function() {
-        const dishName = this.closest('.card').querySelector('h3').textContent;
-        alert(`Order placed for ${dishName}! (This would connect to your ordering system)`);
-    });
-});
-
-// Reservation button functionality
-document.querySelector('.btn-reservation').addEventListener('click', function() {
-    alert('Opening reservation form... (This would connect to your booking system)');
-});
-
-// Book a table button functionality
-document.querySelectorAll('.btn-primary').forEach(button => {
-    if (button.textContent.includes('Book A Table') || button.textContent.includes('Visit us')) {
-        button.addEventListener('click', function() {
-            alert('Opening reservation form... (This would connect to your booking system)');
-        });
-    }
-});
-
-// Mobile menu toggle (for responsive design)
-let mobileMenuOpen = false;
-const createMobileMenu = () => {
-    if (window.innerWidth <= 768) {
-        const nav = document.querySelector('.nav');
+    const createMobileNavElements = () => {
+        // toggle button
         if (!document.querySelector('.mobile-menu-toggle')) {
             const toggle = document.createElement('button');
             toggle.classList.add('mobile-menu-toggle');
+            toggle.setAttribute('aria-label', 'Toggle navigation');
+            toggle.setAttribute('aria-expanded', 'false');
             toggle.innerHTML = '☰';
-            toggle.style.cssText = `
-                display: block;
-                background: none;
-                border: none;
-                color: var(--gold);
-                font-size: 24px;
-                cursor: pointer;
-            `;
-            
-            toggle.addEventListener('click', () => {
-                mobileMenuOpen = !mobileMenuOpen;
-                nav.style.display = mobileMenuOpen ? 'flex' : 'none';
-                toggle.innerHTML = mobileMenuOpen ? '✕' : '☰';
-            });
-            
-            document.querySelector('.header .container').prepend(toggle);
-            nav.style.display = 'none';
-        }
-    }
-};
+            headerContainer.appendChild(toggle);
 
-window.addEventListener('resize', createMobileMenu);
-createMobileMenu();
+                    toggle.addEventListener('click', () => {
+                        const mobileNav = document.querySelector('.mobile-nav');
+                        const overlay = document.querySelector('.mobile-nav-overlay');
+                        const isOpen = mobileNav.classList.contains('open');
+                        if (isOpen) {
+                            mobileNav.classList.remove('open');
+                            mobileNav.setAttribute('aria-hidden', 'true');
+                            overlay.classList.remove('active');
+                            toggle.innerHTML = '☰';
+                            toggle.setAttribute('aria-expanded', 'false');
+                        } else {
+                            mobileNav.classList.add('open');
+                            mobileNav.setAttribute('aria-hidden', 'false');
+                            overlay.classList.add('active');
+                            toggle.innerHTML = '✕';
+                            toggle.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+        }
+
+        // overlay
+        if (!document.querySelector('.mobile-nav-overlay')) {
+            const overlay = document.createElement('div');
+            overlay.className = 'mobile-nav-overlay';
+            overlay.addEventListener('click', () => {
+                const mobileNav = document.querySelector('.mobile-nav');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                if (mobileNav) mobileNav.classList.remove('open');
+                overlay.classList.remove('active');
+                if (toggle) { toggle.innerHTML = '☰'; toggle.setAttribute('aria-expanded', 'false'); }
+            });
+            document.body.appendChild(overlay);
+        }
+
+        // mobile nav panel
+        if (!document.querySelector('.mobile-nav')) {
+            const mobileNav = document.createElement('aside');
+            mobileNav.className = 'mobile-nav';
+            mobileNav.setAttribute('aria-hidden', 'true');
+            mobileNav.innerHTML = `<nav class="mobile-nav-inner" role="navigation" aria-label="Mobile navigation">${nav.innerHTML}</nav>`;
+            document.body.appendChild(mobileNav);
+
+            mobileNav.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    const toggle = document.querySelector('.mobile-menu-toggle');
+                    const overlay = document.querySelector('.mobile-nav-overlay');
+                    mobileNav.classList.remove('open');
+                    if (overlay) overlay.classList.remove('active');
+                    if (toggle) { toggle.innerHTML = '☰'; toggle.setAttribute('aria-expanded', 'false'); }
+                });
+            });
+        }
+    };
+
+    const destroyMobileNavElements = () => {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.mobile-nav-overlay');
+        if (toggle) toggle.remove();
+        if (mobileNav) mobileNav.remove();
+        if (overlay) overlay.remove();
+        if (nav) nav.style.display = '';
+    };
+
+    if (window.innerWidth <= 768) {
+        createMobileNavElements();
+        if (nav) nav.style.display = 'none';
+    } else {
+        destroyMobileNavElements();
+    }
+
+// Keep behavior in sync on resize: create/destroy mobile elements
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+        createMobileNavElements();
+        if (nav) nav.style.display = 'none';
+    } else {
+        destroyMobileNavElements();
+    }
+});
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {

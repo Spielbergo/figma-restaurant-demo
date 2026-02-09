@@ -828,6 +828,11 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
     /* Tighter container padding for small screens */
+    .btn-primary::after,
+    .btn-reservation::after {
+        display: none;
+    }
+
     .container {
         padding: 0 20px;
     }
@@ -856,6 +861,82 @@ h1, h2, h3 {
         -webkit-overflow-scrolling: touch;
         padding: 0 8px;
     }
+
+    /* Mobile hamburger toggle styling */
+    .mobile-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: var(--gold);
+        font-size: 26px;
+        cursor: pointer;
+        padding: 6px 10px;
+        order: 3; /* place on the right */
+    }
+
+    /* Ensure reservation button is centered between logo and hamburger */
+    .btn-reservation {
+        order: 2;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .logo { order: 1; }
+
+/* Mobile sliding nav panel and overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+    z-index: 998;
+}
+.mobile-nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 84vw;
+    max-width: 360px;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(20,20,20,0.98), var(--dark-bg));
+    box-shadow: -20px 0 40px rgba(0,0,0,0.6);
+    transform: translateX(100%);
+    transition: transform 320ms cubic-bezier(.2,.9,.3,1);
+    z-index: 999;
+    padding: 28px 20px;
+    overflow-y: auto;
+}
+.mobile-nav.open {
+    transform: translateX(0);
+}
+
+.mobile-nav-inner {
+    padding-top: 75px;
+}
+
+.mobile-nav-inner a {
+    display: block;
+    padding: 14px 12px;
+    color: var(--text-off-white);
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.mobile-nav-inner a:hover { color: var(--gold); }
+
+/* ensure the nav inside header stays hidden on mobile while panel used */
+@media (max-width: 768px) {
+    .header .nav { display: none; }
+}
 
     .nav a {
         font-size: 16px;
