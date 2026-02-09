@@ -780,20 +780,46 @@ h1, h2, h3 {
     .special-cards {
         grid-template-columns: 1fr;
     }
-    
+
+    /* Make filter buttons horizontally scrollable on tablet and smaller */
+    .filter-buttons {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 0 16px;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+    }
+
+    .filter-buttons::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .filter-buttons::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.06);
+        border-radius: 4px;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        scroll-snap-align: start;
+    }
+
     .specialty-item {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .specialty-item.reverse {
         direction: ltr;
     }
-    
+
     .event-packages {
         grid-template-columns: 1fr;
     }
-    
+
     .story-content {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -801,34 +827,143 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
+    /* Tighter container padding for small screens */
+    .container {
+        padding: 0 20px;
+    }
+
+    .header {
+        padding: 12px 0;
+    }
+
     .header .container {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
     }
-    
+
+    .logo img {
+        height: 56px;
+        width: 56px;
+    }
+
     .nav {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 12px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 8px;
     }
-    
+
+    .nav a {
+        font-size: 16px;
+        padding: 6px 8px;
+    }
+
+    .hero {
+        padding-top: 80px;
+        min-height: 60vh;
+    }
+
     .hero-title {
-        font-size: 40px;
-    }
-    
-    .section-title {
         font-size: 32px;
     }
-    
-    .contact-info {
-        flex-direction: column;
-        gap: 30px;
+
+    .hero-description {
+        font-size: 16px;
     }
-    
-    .footer .container {
+
+    /* Make CTA buttons smaller to avoid overflow */
+    .btn-primary {
+        padding: 10px 28px;
+        font-size: 16px;
+    }
+
+    .btn-secondary {
+        padding: 10px 22px;
+        font-size: 14px;
+    }
+
+    .btn-reservation {
+        padding: 10px 24px;
+        font-size: 16px;
+    }
+
+    /* Scrollable filter buttons (keeps previous behavior but tighter) */
+    .filter-buttons {
+        gap: 12px;
+        overflow-x: auto;
+        padding: 0 12px;
+        justify-content: flex-start;
+        scroll-snap-type: x proximity;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 10px 18px;
+        font-size: 14px;
+        scroll-snap-align: start;
+        border-radius: 6px;
+    }
+
+    /* Cards and images scale down */
+    .card-image {
+        height: 220px;
+    }
+
+    .specialty-items .specialty-item {
+        min-width: 92%;
+        flex: 0 0 92%;
+    }
+
+    .specialty-image {
+        height: 300px;
+    }
+
+    .event-image {
+        height: 300px;
+    }
+
+    .food-image {
+        height: 260px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .contact-info {
         flex-direction: column;
         gap: 20px;
     }
+
+    .footer-logo img {
+        margin-top: 40px;
+        height: 56px;
+        width: 56px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .container { padding: 0 16px; }
+
+    .nav a { font-size: 14px; }
+
+    .hero-title { font-size: 26px; }
+    .hero-description { font-size: 14px; }
+
+    .btn-primary { padding: 8px 18px; font-size: 14px; }
+    .btn-reservation { padding: 8px 16px; font-size: 14px; }
+
+    .filter-btn { padding: 10px 14px; font-size: 13px; }
+
+    .specialty-items .specialty-item { min-width: 95%; flex: 0 0 95%; }
+    .specialty-image { height: 240px; }
+    .card-image { height: 180px; }
 }
 
 /* Smooth Scroll */
