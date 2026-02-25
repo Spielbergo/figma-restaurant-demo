@@ -10,7 +10,7 @@
     <meta name="description" content="Dine - Experience the best sushi in town with our high-quality Japanese cuisine, fine dining events, and authentic recipes.">
     <meta name="keywords" content="sushi restaurant, Japanese cuisine, fine dining, authentic sushi, best sushi, Japanese restaurant, sushi bar, luxury dining, tuna sushi, salmon sushi, dining events">
     <meta name="author" content="Dine Restaurant">
-    <meta name="robots" content="noindex, nofollow">
+    <!-- <meta name="robots" content="noindex, nofollow"> -->
     <meta name="language" content="English">
     
     <!-- Canonical URL -->
@@ -45,12 +45,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Dine Restaurant">
     
+    <!-- Preloads: hero LCP image + stylesheet -->
+    <link rel="preload" as="image" href="images/hero-bg.webp" fetchpriority="high">
+    <link rel="preload" as="style" href="styles.css">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (async to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap"></noscript>
 
     <!-- Favicon & App Icons -->
     <link rel="icon" href="images/logos/favicon.ico">
@@ -283,6 +287,8 @@
         </div>
     </header>
 
+    <main>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -371,8 +377,7 @@
             <div class="specialty-items">
                 <div class="specialty-item">
                     <div class="specialty-image">
-                        <img src="images/dragon-sushi.webp" alt="Dragon Sushi">
-                          <img src="images/dragon-sushi.webp" alt="Dragon Sushi" loading="lazy" decoding="async">
+                        <img src="images/dragon-sushi.webp" alt="Dragon Sushi" width="380" height="249" loading="lazy" decoding="async">
                     </div>
                     <div class="specialty-content">
                         <h3>DRAGON SUSHI</h3>
@@ -383,8 +388,7 @@
 
                 <div class="specialty-item reverse">
                     <div class="specialty-image">
-                        <img src="images/creamy-sushi.webp" alt="Creamy Sushi">
-                          <img src="images/creamy-sushi.webp" alt="Creamy Sushi" loading="lazy" decoding="async">
+                        <img src="images/creamy-sushi.webp" alt="Creamy Sushi" width="380" height="249" loading="lazy" decoding="async">
                     </div>
                     <div class="specialty-content">
                         <h3>CREAMY SUSHI</h3>
@@ -395,8 +399,7 @@
 
                 <div class="specialty-item">
                     <div class="specialty-image">
-                        <img src="images/roll-salmon-sushi.webp" alt="Roll Salmon Sushi">
-                          <img src="images/roll-salmon-sushi.webp" alt="Roll Salmon Sushi" loading="lazy" decoding="async">
+                        <img src="images/roll-salmon-sushi.webp" alt="Roll Salmon Sushi" width="380" height="249" loading="lazy" decoding="async">
                     </div>
                     <div class="specialty-content">
                         <h3>ROLL SALMON SUSHI</h3>

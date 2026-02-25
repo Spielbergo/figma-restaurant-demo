@@ -44,12 +44,14 @@ const filterButtons = document.querySelectorAll('.filter-btn');
                         if (isOpen) {
                             mobileNav.classList.remove('open');
                             mobileNav.setAttribute('aria-hidden', 'true');
+                            mobileNav.setAttribute('inert', '');
                             overlay.classList.remove('active');
                             toggle.innerHTML = '☰';
                             toggle.setAttribute('aria-expanded', 'false');
                         } else {
                             mobileNav.classList.add('open');
                             mobileNav.setAttribute('aria-hidden', 'false');
+                            mobileNav.removeAttribute('inert');
                             overlay.classList.add('active');
                             toggle.innerHTML = '✕';
                             toggle.setAttribute('aria-expanded', 'true');
@@ -64,7 +66,11 @@ const filterButtons = document.querySelectorAll('.filter-btn');
             overlay.addEventListener('click', () => {
                 const mobileNav = document.querySelector('.mobile-nav');
                 const toggle = document.querySelector('.mobile-menu-toggle');
-                if (mobileNav) mobileNav.classList.remove('open');
+                if (mobileNav) {
+                    mobileNav.classList.remove('open');
+                    mobileNav.setAttribute('aria-hidden', 'true');
+                    mobileNav.setAttribute('inert', '');
+                }
                 overlay.classList.remove('active');
                 if (toggle) { toggle.innerHTML = '☰'; toggle.setAttribute('aria-expanded', 'false'); }
             });
@@ -76,6 +82,7 @@ const filterButtons = document.querySelectorAll('.filter-btn');
             const mobileNav = document.createElement('aside');
             mobileNav.className = 'mobile-nav';
             mobileNav.setAttribute('aria-hidden', 'true');
+            mobileNav.setAttribute('inert', '');
             mobileNav.innerHTML = `<nav class="mobile-nav-inner" role="navigation" aria-label="Mobile navigation">${nav.innerHTML}</nav>`;
             document.body.appendChild(mobileNav);
 
@@ -84,6 +91,8 @@ const filterButtons = document.querySelectorAll('.filter-btn');
                     const toggle = document.querySelector('.mobile-menu-toggle');
                     const overlay = document.querySelector('.mobile-nav-overlay');
                     mobileNav.classList.remove('open');
+                    mobileNav.setAttribute('aria-hidden', 'true');
+                    mobileNav.setAttribute('inert', '');
                     if (overlay) overlay.classList.remove('active');
                     if (toggle) { toggle.innerHTML = '☰'; toggle.setAttribute('aria-expanded', 'false'); }
                 });
@@ -101,7 +110,9 @@ const filterButtons = document.querySelectorAll('.filter-btn');
         if (nav) nav.style.display = '';
     };
 
-    if (window.innerWidth <= 768) {
+    const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+
+    if (mobileBreakpoint.matches) {
         createMobileNavElements();
         if (nav) nav.style.display = 'none';
     } else {
@@ -109,21 +120,31 @@ const filterButtons = document.querySelectorAll('.filter-btn');
     }
 
 // Keep behavior in sync on resize: create/destroy mobile elements
+let resizeTimer;
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-        createMobileNavElements();
-        if (nav) nav.style.display = 'none';
-    } else {
-        destroyMobileNavElements();
-    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            createMobileNavElements();
+            if (nav) nav.style.display = 'none';
+        } else {
+            destroyMobileNavElements();
+        }
+    }, 100);
 });
 
 // Parallax effect for hero section
+let parallaxTicking = false;
 window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+    if (!parallaxTicking) {
+        requestAnimationFrame(() => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundPositionY = window.pageYOffset * 0.5 + 'px';
+            }
+            parallaxTicking = false;
+        });
+        parallaxTicking = true;
     }
 });
 
